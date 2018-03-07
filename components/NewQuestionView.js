@@ -2,6 +2,7 @@ import React,{ Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, KeyboardAvoidingView, ImageBackground } from 'react-native'
 import { addCardToDeck } from '../actions'
 import { connect } from 'react-redux'
+import { grayishBlack } from '../utils/colors'
 
 class NewQuestionView extends Component {
   state = {
@@ -25,7 +26,7 @@ class NewQuestionView extends Component {
         this.props.navigation.navigate('SingleDeckView',{title})
       }
       else{
-        alert('Please fill the form to add nec card')
+        alert('Please fill the form to add new card')
       }
     }
     return (
@@ -35,14 +36,14 @@ class NewQuestionView extends Component {
           style={styles.textInput}
           placeholder='Question'
           value={question}
-          placeholderTextColor='#0e0f0f'
+          placeholderTextColor={grayishBlack}
           onChangeText={(text)=>this.setState({question:text})}
         />
         <TextInput
           style={styles.textInput}
           placeholder='Answer'
           value={answer}
-          placeholderTextColor='#0e0f0f'
+          placeholderTextColor={grayishBlack}
           onChangeText={(text)=>this.setState({answer:text})}
         />
         <TouchableOpacity
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     fontSize: 35
   },
   addCardBtn : {
-    backgroundColor : 'black',
+    backgroundColor : grayishBlack,
     marginTop: 50,
     width: 100,
     height:35,
@@ -86,8 +87,8 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     height: 60,
     marginTop : 50,
-    color:'#0e0f0f',
-    borderColor:'#0e0f0f',
+    color:grayishBlack,
+    borderColor:grayishBlack,
     fontWeight:'900',
     fontSize:20,
     textAlign:'center',

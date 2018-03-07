@@ -1,0 +1,6 @@
+export const grayishBlack = '#0e0f0f'
+export const white = '#fff'
+export const lightGray = '#D3D3D3'
+export const dimgray = 'dimgray'
+export const almostWhite = '#F5F5F5'
+export const stylishRed = '#ED1C24'

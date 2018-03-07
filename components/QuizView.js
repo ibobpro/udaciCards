@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, ImageBackground, Dimensions,S
 import { connect } from 'react-redux'
 import { fetchDeck } from '../actions'
 import FlipCard from 'react-native-flip-card'
+import { white, lightGray, dimgray, almostWhite, grayishBlack, stylishRed } from '../utils/colors'
 
 
 
@@ -54,12 +55,12 @@ class QuizView extends Component {
               <Text style={[styles.title,{fontSize:20}]}>which is {(answersCount/deck.questions.length*100).toFixed(2)}% correct answers!</Text>
               <TouchableOpacity onPress={restartBtn} style={styles.correct}>
                 <View>
-                  <Text style={{color:'white', fontWeight:'100'}}>Restart</Text>
+                  <Text style={{color:white, fontWeight:'100'}}>Restart</Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity onPress={()=>this.props.navigation.navigate('Home')} style={styles.incorrect}>
                 <View>
-                  <Text style={{color:'white', fontWeight:'100'}}>Back to menu</Text>
+                  <Text style={{color:white, fontWeight:'100'}}>Back to menu</Text>
                 </View>
               </TouchableOpacity>
             </ImageBackground>
@@ -77,7 +78,7 @@ class QuizView extends Component {
               {/* Face Side */}
             <ImageBackground source={require('../img/card.jpeg')} style={styles.mainText}>
               <ScrollView contentContainerStyle={styles.scrollView}>
-                <Text style={{color:'#F5F5F5'}}>{questionCounter}/{numberOfCards}</Text>
+                <Text style={{color:almostWhite}}>{questionCounter}/{numberOfCards}</Text>
                 <Text style={styles.answer}>{title}</Text>
                 <Text style={styles.title}>{deck.questions[questionId].question}</Text>
                 <TouchableOpacity onPress={()=>this.setState({flip:!this.state.flip})}>
@@ -87,12 +88,12 @@ class QuizView extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={correctBtn} style={styles.correct}>
                   <View>
-                    <Text style={{color:'white', fontWeight:'100'}}>Correct</Text>
+                    <Text style={{color:white, fontWeight:'100'}}>Correct</Text>
                   </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={incorrectBtn} style={styles.incorrect}>
                   <View>
-                    <Text style={{color:'white', fontWeight:'100'}}>Incorrect</Text>
+                    <Text style={{color:white, fontWeight:'100'}}>Incorrect</Text>
                   </View>
                 </TouchableOpacity>
               </ScrollView>
@@ -100,7 +101,7 @@ class QuizView extends Component {
               {/* Back Side */}
               <ImageBackground source={require('../img/card.jpeg')} style={styles.mainText}>
                 <ScrollView contentContainerStyle={styles.scrollView}>
-                  <Text style={{color:'#F5F5F5'}}>{questionCounter}/{numberOfCards}</Text>
+                  <Text style={{color:almostWhite}}>{questionCounter}/{numberOfCards}</Text>
                   <Text style={styles.answer}>{title}</Text>
                   <Text style={styles.title}>{deck.questions[questionId].answer}</Text>
                   <TouchableOpacity onPress={()=>this.setState({flip:!this.state.flip})}>
@@ -118,7 +119,7 @@ class QuizView extends Component {
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor:'dimgray',
+    backgroundColor:dimgray,
     alignItems : 'center',
     justifyContent: 'center',
   },
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
     borderWidth:0
   },
   answer:{
-    color:'#ED1C24',
+    color:stylishRed,
     fontWeight: 'bold'
   },
   mainText:{
@@ -158,7 +159,7 @@ const styles = StyleSheet.create({
     overflow:'hidden'
   },
   title : {
-    color:'#F5F5F5',
+    color:almostWhite,
     fontSize : Platform.OS === 'ios' ? 40 : 20,
     textAlign:'center'
   },
@@ -176,7 +177,7 @@ const styles = StyleSheet.create({
     borderRadius : 7
   },
   incorrect : {
-    backgroundColor:'#ED1C24',
+    backgroundColor:stylishRed,
     marginTop:10,
     borderWidth: 0.5,
     width: 150,

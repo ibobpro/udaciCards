@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity,
   KeyboardAvoidingView, ImageBackground, Dimensions } from 'react-native'
 import { connect } from 'react-redux'
 import { saveDeckTitle } from '../actions'
+import { white, lightGray, dimgray, almostWhite, grayishBlack } from '../utils/colors'
 
 class NewDeckView extends Component {
   state = {
@@ -11,14 +12,19 @@ class NewDeckView extends Component {
 
   render(){
     const saveData = () => {
+      const {text} = this.state
+      const {decks, navigation, dispatch} = this.props
       if(this.state.text.length > 0){
         this.props.dispatch(saveDeckTitle(this.state.text))
-          .then(()=>this.setState({text:''}))
-        this.props.navigation.navigate('DeckListView')
+          .then(()=>{
+            const deck = this.props.decks[text]
+            this.props.navigation.navigate('SingleDeckView',{title:deck.title,numberOfCards:deck.questions.length})
+            })
       }
       else{
         alert('Please fill the form to add new deck')
       }
+      this.setState({text : ''})
     }
     return (
       <ImageBackground source={require('../img/bg2.jpg')} style={styles.container}>
@@ -27,7 +33,7 @@ class NewDeckView extends Component {
             <Text style={styles.deckText}>What is the title of your new deck?</Text>
             <TextInput
               style={styles.textInput}
-              placeholderTextColor='#D3D3D3'
+              placeholderTextColor={lightGray}
               placeholder='Deck title'
               onChangeText={(text)=>this.setState({text})}
               value={this.state.text}/>
@@ -37,7 +43,7 @@ class NewDeckView extends Component {
             onPress={saveData}
           >
             <View>
-              <Text style={{color:'white'}}>Submit</Text>
+              <Text style={{color:white}}>Submit</Text>
             </View>
           </TouchableOpacity>
         </KeyboardAvoidingView>
@@ -51,14 +57,14 @@ const styles = StyleSheet.create({
     flex:1,
     justifyContent:'center',
     alignItems: 'center',
-    backgroundColor:'dimgray',
+    backgroundColor:dimgray,
 
   },
   card:{
     justifyContent:'center',
     alignItems:'center',
     height:Dimensions.get('window').width,
-    backgroundColor:'#fff',
+    backgroundColor:white,
     borderWidth : 2,
     borderRadius:20,
     shadowColor: 'rgba(0, 0, 0, .5)',
@@ -74,12 +80,12 @@ const styles = StyleSheet.create({
   deckText : {
     marginLeft:10,
     marginRight:10,
-    color:'#F5F5F5',
+    color:almostWhite,
     textAlign : 'center',
     fontSize: 35
   },
   addCardBtn : {
-    backgroundColor : 'black',
+    backgroundColor : grayishBlack,
     marginTop: 50,
     width: 100,
     height:35,
@@ -90,8 +96,8 @@ const styles = StyleSheet.create({
   textInput : {
     borderWidth : 1,
     borderRadius: 7,
-    color:'#F5F5F5',
-    borderColor:'#F5F5F5',
+    color:almostWhite,
+    borderColor:almostWhite,
     fontSize:20,
     textAlign:'center',
     width:200,

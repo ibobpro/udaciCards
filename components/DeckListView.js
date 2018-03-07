@@ -4,6 +4,7 @@ import SingleDeckView from './SingleDeckView'
 import { connect } from 'react-redux'
 import { fetchDecks, initAsyncStorage, saveDeckTitle } from '../actions'
 import { defaultData } from '../utils/defaultData'
+import { almostWhite, grayishBlack } from '../utils/colors'
 
 const ListView = ({title,numberOfCards,navigation}) => {
   return (
@@ -41,7 +42,7 @@ class DeckListView extends Component {
             keyExtractor={item => item.title}
           />
           : <View style={styles.loader}>
-              <ActivityIndicator color="#00ff00" />
+              <ActivityIndicator color={grayishBlack} />
             </View>}
         </ImageBackground>
     )
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
     overflow:'hidden'
   },
   title : {
-    color:'#F5F5F5',
+    color:almostWhite,
     fontSize : 40
   },
   numberOfCards : {
@@ -83,11 +84,7 @@ const styles = StyleSheet.create({
     color : 'gray'
   }
 });
-/*
-const mapStateToProps = (state) => {
-  return {decks : state}
-}
-*/
+
 const mapStateToProps = (state) => {
   const objToArrState = Object.keys(state)
   return {decks : objToArrState.map((key)=>state[key])}
