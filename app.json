@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "sdkVersion": "25.0.0",
+    "orientation":"portrait",
+    "name": "UdaciCards",
+    "description": "The best stuying app in the world.",
+    "slug": "udacicards",
+    "version": "1.0",
+    "icon": "https://png.icons8.com/color/50/000000/literature.png",
+    "notification": {
+      "icon": "https://png.icons8.com/color/50/000000/literature.png"
+    },
+    "ios": {
+     "bundleIdentifier": "org.udacifitness.exp",
+    },
+    "android": {
+     "package": "org.udacifitness.exp",
+    }
+  },
+}
